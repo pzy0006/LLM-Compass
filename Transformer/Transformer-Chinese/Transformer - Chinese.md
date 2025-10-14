@@ -735,6 +735,3 @@ Same as encoder
 
 采样之后，得到的 token 会被加入生成序列，并作为下一步的输入，整个过程不断循环，直到句子完成。
 
-![image.png](Transformer%20-%20Chinese%202719e9af5d5a808394c8e4fd3a4f7ec3/image%2020.png)
-
-![image.png](Transformer%20-%20Chinese%202719e9af5d5a808394c8e4fd3a4f7ec3/image%2021.png)
