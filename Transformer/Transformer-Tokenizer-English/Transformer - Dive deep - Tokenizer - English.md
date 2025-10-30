@@ -201,7 +201,8 @@ We continue to repeat the above steps until we reach a predefined vocabulary siz
 
 ## Implementation of BPE
 
- See Stanford university cs 336 assignment 1
+ See Stanford university cs 336 assignment 1.
+ Here is link: ```https://github.com/pzy0006/CS-336/blob/main/assignment1-basics-main/tests/adapters.py```
 
 ## Other Algorithms
 
