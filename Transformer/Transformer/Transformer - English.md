@@ -1,6 +1,6 @@
 # Transformer - English
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image.png)
+![image.png](Transformer%20-%20English/image.png)
 
 The traditional Transformer architecture consists of two main components: the Encoder on the left and the Decoder on the right. In practical implementations, both the encoder and decoder are usually stacked multiple times. For example, a typical Transformer may contain six encoder layers and six decoder layers , each building upon the previous one.
 
@@ -43,7 +43,7 @@ The whole process of embedding is to transform some human-readable language into
 
  After getting a string of integer IDs like [101, 102 ,103, 104]. It is time to convert them into dense vector representation through embedding layer. Each token id is the index of one row of the matrix. For example, if the embedding matrix is 100,000 * 512, and ID = 101, then we take the 101st row of the matrix, and get a vector with 512 dimensions.
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%201.png)
+![image.png](Transformer%20-%20English/image%201.png)
 
  The above steps are called embedding lookup, and the whole process takes place in the "input embedding" of the transformer's original paper.
 
@@ -52,7 +52,7 @@ The whole process of embedding is to transform some human-readable language into
 
  We get these vectors looking like this, which I'll show you here in 2D
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%202.png)
+![image.png](Transformer%20-%20English/image%202.png)
 
 After the embedding step, words with similar meanings are represented by similar vectors.
 
@@ -79,7 +79,7 @@ might be transformed into something like this (simplified illustration):
 
 As you can see, the vectors for “apples” and “bananas” are numerically close, reflecting their semantic similarity.
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%203.png)
+![image.png](Transformer%20-%20English/image%203.png)
 
 The final output of this step is a simple matrxi containing the vectors for each word, assuming on the graph that each vector has a dimension of 512. (The vector dimensions can be other numbers.)
 
@@ -94,7 +94,7 @@ Transformer does not know the location information of each word. For example, if
 
  In Transformer paper, the author used Absolute Positional Encoding.
 
-![Screenshot 2025-09-22 at 1.34.29 PM.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/Screenshot_2025-09-22_at_1.34.29_PM.png)
+![Screenshot 2025-09-22 at 1.34.29 PM.png](Transformer%20-%20English/Screenshot_2025-09-22_at_1.34.29_PM.png)
 
 **The meaning of each symbol:**
 
@@ -153,7 +153,7 @@ $$
 - **sequence length** = N: **number of tokens** in each sample (i.e. sentence length)
 - **embedding dimension** = D: the length of the vector representation of each token (i.e., the feature dimension of each token).
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%204.png)
+![image.png](Transformer%20-%20English/image%204.png)
 
 > The steps above demonstrate how positional information vectors are added to the original word embeddings — essentially, it’s a process of weighted summation between the two types of vectors.
 > 
@@ -171,7 +171,7 @@ $$
 
 This step is the main focus. In the attention mechanism we will divide Z into three parts Q, K and V (note that the size of their three matrices is the same). These three matrices contain different information and serve different purposes.
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%205.png)
+![image.png](Transformer%20-%20English/image%205.png)
 
  Inside the multi head attention we first weight Z so that we get the corresponding Q, K and V. In this case, the weights of the three matrices are the same as in the previous one.
 
@@ -214,13 +214,13 @@ $$
 
  The above equation shows how we calculate attention.
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%206.png)
+![image.png](Transformer%20-%20English/image%206.png)
 
  Example: ["I", "love", "cream", "crackers"]. For each word, there are q,k and v, their size is 1*5, where 5 is the vector dimension.
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%207.png)
+![image.png](Transformer%20-%20English/image%207.png)
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%208.png)
+![image.png](Transformer%20-%20English/image%208.png)
 
  The equation above corresponds to
 
@@ -290,7 +290,7 @@ Softmax does this by **converting a set of scores into a probability distributio
 - Softmax result = [0.71, 0.28, 0.01].
 - Meaning: love 70% focuses on "I", 28% focuses on itself, 1% focuses on cream, and hardly looks at crackers.
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%209.png)
+![image.png](Transformer%20-%20English/image%209.png)
 
 ### Step 3.3
 
@@ -341,7 +341,7 @@ The meaning of this matrix is: the output vector of each token = its attention w
 
 Single-head attention can only learn associations from one "projection space", while multi-head attention enhances the model's representational capability by computing attention in different subspaces in parallel through multiple linear transformations (i.e., multiple "heads").
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%2010.png)
+![image.png](Transformer%20-%20English/image%2010.png)
 
 $$
 head_i = Attention(Q_i, K_i, V_i) = softmax\!\left(\frac{Q_i K_i^T}{\sqrt{d_k}}\right) V_i, \quad i \in [1, H]
@@ -351,11 +351,11 @@ $$
 
 $i$: the ith head index, there are $H$ heads in total.
 
-$Q_i$: the Query matrix of the ith head, shape $[n * d_k]$
+$Q_i$: the Query matrix of the ith head, shape $[n * d_k]$, $W_i^Q * Q = Q_i$
 
-$K_i$: Key matrix of the i-th head, shape $[n * d_k]$
+$K_i$: Key matrix of the i-th head, shape $[n * d_k]$, $W_i^K * K = K_i$
 
-$V_i$: Value matrix of the ith header, shape $[n * d_k]$
+$V_i$: Value matrix of the ith header, shape $[n * d_k]$, $W_i^V * V = V_i$
 
 $d_k$: Key/Query vector dimension $d_k = d_{model} / H$
 
@@ -363,14 +363,14 @@ $d_k$: Key/Query vector dimension $d_k = d_{model} / H$
 > 
 
 $$
-MultiHeadAttention(Q, K, V) = Concat(head_0, head_1, \ldots, head_H)
+MultiHeadAttention(Q, K, V) = Concat(head_0, head_1, \ldots, head_H)W^O
 $$
+
+Where $W^O = [d_{model} * d_{model}]$
 
 This formula is what stitches together the results of all the $head$ to get the overall output of multi-head attention.
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%2011.png)
-
- Why use multi-head?
+![image.png](Transformer%20-%20English/image%2011.png)
 
 **Model relationships in parallel in different subspaces (cut matrices)**
 
@@ -386,7 +386,7 @@ $$
 W^Q,W^K,W^V
 $$
 
- Equivalent to computing attention in different representation subspaces; this captures different types of dependencies such as short-range/long-range, syntactic/semantic, etc. at the same time (e.g., head 1 captures neighboring word relations, head 2 captures subject-predicate-object relations, head 3 captures syntactic structures, etc.), and then collapses the outputs of each head to form a richer representation. This is the core motivation of the original paper and textbook on multiple heads.
+Equivalent to computing attention in different representation subspaces; this captures different types of dependencies such as short-range/long-range, syntactic/semantic, etc. at the same time (e.g., head 1 captures neighboring word relations, head 2 captures subject-predicate-object relations, head 3 captures syntactic structures, etc.), and then collapses the outputs of each head to form a richer representation. This is the core motivation of the original paper and textbook on multiple heads.
 
 > In a word, it summarizes that the attention mechanism of multiple heads is to capture the relationship between words and improve the model's ability to understand the context.
 > 
@@ -395,7 +395,7 @@ $$
 
  Now we explain this part, the figure Add represents residual network, norm represents normalization.
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%2012.png)
+![image.png](Transformer%20-%20English/image%2012.png)
 
 > What is a deep network? Why do we need deep networks? Deep Network Problem.
 > 
@@ -407,7 +407,7 @@ $$
 > Degradation solution: residual network
 > 
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%2013.png)
+![image.png](Transformer%20-%20English/image%2013.png)
 
  The residual network layer is:
 
@@ -637,9 +637,9 @@ $$
 
  In practice, the decoder input is not just a single label at each step but a concatenated shifted sequence, as illustrated in the figure.
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%2014.png)
+![image.png](Transformer%20-%20English/image%2014.png)
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%2015.png)
+![image.png](Transformer%20-%20English/image%2015.png)
 
 **Masked Self-Attention**
 
@@ -650,11 +650,11 @@ $$
     For example, we have input “I love cream crackers” , length of this sentence is 4, and sequence length is 6, so we need to mask to more rows.
     
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%2016.png)
+![image.png](Transformer%20-%20English/image%2016.png)
 
 - Sequence Masking: Sequence Masking is also a common masking mechanism in Transformer. Different from Padding Mask, Sequence Mask is mainly used to ensure that the decoder can only utilize the generated words during the training and inference process, and cannot "peek" at the future information. Because in the autoregressive generation model, each step of the prediction must rely on the previous token, not the subsequent token, for example, suppose the target sequence is "I love you". In predicting the first word, the model can only see `<BOS>;` in predicting the second word, the model can only utilize `<BOS> I`; and in predicting the third word, the model can only utilize `<BOS> I love`. without Sequence Mask, the model can compute the self-attention while see "you", which would break the autoregressive generation setting. To solve this problem, we use an upper triangular mask matrix (causal mask) to mask out the attention scores at future moments, which is usually done by setting the value of these positions to a very small negative value (e.g. -1e9). In this way, the Sequence Mask ensures the autoregressive nature of the Transformer decoder, preventing information leakage while keeping training and inference consistent.
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%2017.png)
+![image.png](Transformer%20-%20English/image%2017.png)
 
 > We have explained two different forms of masking above, why does the decoder need sequence masking? This is because the Transformer adopts Autoregressive mode (generating sequences token by token, and predicting the next token based on the previous token at each step). This mode guarantees three benefits: 1: to ensure that the generation logic is correct, 2: to maintain the consistency of the training and inference phases, 3: to prevent information leakage. note that sequence masking is only for the autoregressive mode of the training and inference of the pre-fill phase, inference of the decoder does not need masking mechanism.
 > 
@@ -693,7 +693,7 @@ $$
 
 ### Step3: **Encoder-Decoder Attention**
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%2018.png)
+![image.png](Transformer%20-%20English/image%2018.png)
 
  Earlier we talked about Self-Attention, which is essentially the exchange of information within the sequence "between itself and itself". The purpose of using the model is prediction, which must be combined with historical information. In the Encoder-Decoder framework, the history information is stored in the output of Encoder, so how to ensure that the generated information can be connected with the history information? This is where Cross-Attention is introduced.
 
@@ -737,7 +737,7 @@ $$
 
  By the time we get to this layer, we've figured out what the next token will be, but at this point the token is still represented as a number, i.e. a vector. We have to figure out a way to convert this vector into text that people can read.
 
-![image.png](Transformer%20-%20English%202869e9af5d5a80b394a4f3e835c63d31/image%2019.png)
+![image.png](Transformer%20-%20English/image%2019.png)
 
 **Linear**
 
